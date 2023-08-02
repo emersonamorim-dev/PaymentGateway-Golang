@@ -1,0 +1,18 @@
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - "8081:8081"
+    depends_on:
+      - rabbitmq
+      - dynamodb
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  dynamodb:
+    image: amazon/dynamodb-local
+    ports:
+      - "8000:8000"
